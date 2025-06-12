@@ -19,6 +19,7 @@ const Header = () => {
     setHasMounted(true);
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const controlNavbar = () => {
     if (window.scrollY > 500) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
@@ -38,7 +39,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", controlNavbar);
     };
-  }, [lastScrollY, hasMounted]);
+  }, [lastScrollY, hasMounted, controlNavbar]);
 
   if (!hasMounted) {
     // Sementara SSR ditampilkan class default

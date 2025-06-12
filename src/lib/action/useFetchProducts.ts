@@ -15,6 +15,7 @@ export default function useFetchProducts() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
         if (!res.ok) throw new Error("Gagal mengambil data produk");
         const json = await res.json();
+        console.info("[APP] FETCH PRODUCTS", json);
         setData(json.products || []);
       } catch (err) {
         setError(err as Error);

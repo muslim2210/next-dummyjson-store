@@ -21,6 +21,7 @@ const ProductPage = () => {
         {data.map((product) => (
           <div key={product.id} className="w-full h-[200px] md:h-[300px]">
             <Image
+              priority
               src={product.thumbnail}
               alt={product.title}
               width={300}
