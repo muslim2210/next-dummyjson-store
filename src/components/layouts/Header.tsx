@@ -7,6 +7,8 @@ import { VscChromeClose } from "react-icons/vsc";
 import Image from "next/image";
 import MenuLink from "./Menu";
 import MenuMobile from "./MenuMobile";
+import { LuCircleUserRound } from "react-icons/lu";
+import { BsCart } from "react-icons/bs";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -73,6 +75,18 @@ const Header = () => {
         </div>
 
         <div className="flex-1 gap-1 flex justify-end items-center">
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="w-8 md:w-10 h-8 md:h-10 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+              <BsCart className="text-[23px] mr-3" />
+              <div className="h-[18px] md:h-[22px] min-w-[18px] md:min-w-[22px] rounded-full bg-red-600 absolute top-0 left-3 md:left-5 text-white text-[12px] md:text-[14px] flex justify-center items-center px-[2px] md:px-[5px]">
+                3
+              </div>
+            </div>
+            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+
+            <LuCircleUserRound size={38} />
+            </div>
+          </div>
           {mobileMenu && <MenuMobile setMobileMenu={setMobileMenu} />}
           <div className="flex items-center gap-4 text-black relative">
             {/* Mobile icon */}
