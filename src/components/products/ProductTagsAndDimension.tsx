@@ -1,3 +1,5 @@
+import Tags from "../fragments/Tags";
+
 interface ProductTagsAndDimensionsProps {
   tags: string[];
   dimensions: {
@@ -11,19 +13,7 @@ const ProductTagsAndDimensions = ({ tags, dimensions }: ProductTagsAndDimensions
   return (
     <div className="my-6 space-y-4">
       {/* Tags */}
-      <div className="">
-        <h3 className="text-sm font-semibold text-gray-700 mb-4">Tags:</h3>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag, idx) => (
-            <span
-              key={idx}
-              className="bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-      </div>
+      <Tags data={tags} />
 
       {/* Dimensions */}
       <div>

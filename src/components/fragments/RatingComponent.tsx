@@ -4,7 +4,7 @@ interface RatingProps {
   rating: number; 
 }
 
-const ProductRating = ({ rating }: RatingProps) => {
+const RatingComponent = ({ rating }: RatingProps) => {
   const fullStars = Math.floor(rating); // Bintang penuh
   const hasHalfStar = rating - fullStars >= 0.5; // Setengah bintang
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Bintang kosong
@@ -23,4 +23,4 @@ const ProductRating = ({ rating }: RatingProps) => {
   );
 };
 
-export default ProductRating;
+export default RatingComponent;

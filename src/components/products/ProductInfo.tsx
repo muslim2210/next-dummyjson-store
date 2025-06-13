@@ -4,7 +4,7 @@ import { ProductModel } from "@/types/product";
 import { BiHeart } from "react-icons/bi";
 import ProductPrice from "./ProductPrice";
 import ProductTagsAndDimensions from "./ProductTagsAndDimension";
-import ProductRating from "./ProductRating";
+import RatingComponent from "../fragments/RatingComponent";
 
 interface ProductCardProps {
   productInfo: ProductModel;
@@ -31,7 +31,7 @@ const ProductInfo = ({ productInfo }: ProductCardProps) => {
       <div className="text-md font-medium text-black/[0.5] mb-5">
         {productInfo.warrantyInformation ?? "No Warranty"}
       </div>
-      <ProductRating rating={productInfo.rating} />
+      <RatingComponent rating={productInfo.rating} />
 
 
       {/* ADD TO CART BUTTON START */}
