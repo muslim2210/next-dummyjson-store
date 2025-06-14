@@ -2,6 +2,7 @@
 import CatalogCard from '@/components/fragments/CatalogCard';
 import LoadingSpinner from '@/components/fragments/LoadingSpinner';
 import Wrapper from '@/components/layouts/Wrapper';
+import { FilteredDialog } from '@/components/recipes/FilteredDialog';
 import { useFetchRecipes } from '@/lib/action/useFetchRecipes';
 import { RecipeModel } from '@/types/recipes';
 import React, { useMemo, useState } from 'react'
@@ -87,10 +88,20 @@ const RecipesPage = () => {
         </div>
 
         {/* Recipes List */}
-        <div className="flex-1 mt-10 mb-5">
-          <h1 className="text-xl font-bold mb-4">
-            Total Recipes: {filteredRecipes.length}
-          </h1>
+        <div className="flex-1 mt-7 md:mt-10 mb-5 lg:px-7">
+          <div className="flex flex-row justify-between">
+            <h1 className="text-xl font-bold mb-4">
+              Total Recipes: {filteredRecipes.length}
+            </h1>
+            <FilteredDialog
+              allTags={allTags}
+              allMeals={allMeals}
+              selectedTags={selectedTags}
+              selectedMeals={selectedMeals}
+              onTagChange={handleTagChange}
+              onMealChange={handleMealChange}
+            />
+          </div>
           <div className="grid grid-cols-2 gap-3 md:gap-5 lg:grid-cols-3 lg:gap-7">
             {filteredRecipes.map((recipe: RecipeModel) => (
               <CatalogCard key={recipe.id} title={recipe.name} category={recipe.cuisine} id={recipe.id} thumbnail={recipe.image} rating={recipe.rating} href={`/recipes/${recipe.id}`} isRecipe tags={recipe.tags} />

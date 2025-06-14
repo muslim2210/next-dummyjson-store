@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[70px] bg-white flex items-center justify-between z-20 shadow-sm sticky top-0 transition-transform duration-300 ${show}`}
+      className={`w-full h-[50px] md:h-[70px] bg-white flex items-center justify-between z-20 shadow-xs sticky top-0 transition-transform duration-300 ${show}`}
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         <div className="flex-1">
