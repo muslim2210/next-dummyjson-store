@@ -55,7 +55,7 @@ const ProductInfo = ({ productInfo }: ProductCardProps) => {
       />
       <div>
         <div className="text-lg font-semibold mb-5">Product Description</div>
-        <div className="text-primaryBlack text-base text-pretty mb-5">
+        <div className="text-[#1E3A8A]Black text-base text-pretty mb-5">
           {productInfo.description}
         </div>
       </div>

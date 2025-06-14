@@ -8,19 +8,25 @@ const ProductPrice = ({ price, discountPercentage }: PriceProps) => {
   const discountedPrice = price - discount;
 
   return (
-    <div className="flex items-center gap-3 mt-2">
+    <div className="flex items-center gap-3 mt-1">
       {/* Harga setelah diskon */}
-      <span className="text-lg font-bold text-gray-700">
-        ${discountedPrice.toFixed(2)}
+      <span className="text-[14px] md:text-base font-bold text-gray-700">
+        {discountedPrice.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
       </span>
 
       {/* Harga asli dicoret */}
-      <span className="text-base line-through text-gray-500">
-        ${price.toFixed(2)}
+      <span className="text-xs md:text-sm line-through text-gray-500">
+        {price.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}
       </span>
 
       {/* Label diskon */}
-      <span className="text-sm bg-red-100 text-red-600 px-2 py-[2px] rounded">
+      <span className="text-xs md:text-sm bg-red-100 text-red-600 px-2 py-[2px] rounded">
         -{discountPercentage.toFixed(0)}%
       </span>
     </div>

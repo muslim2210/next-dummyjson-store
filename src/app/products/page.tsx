@@ -50,7 +50,7 @@ const ProductPage = () => {
  } else {
   return (
     <Wrapper className="my-10">
-      <div className="text-primaryBlack flex flex-col gap-2">
+      <div className="text-gray-800 flex flex-col gap-2">
         <h5 className="font-medium text-gray-500 text-base">Products / Page ({currentPage}) of {totalPages}</h5>
       </div>
       <div className="my-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
