@@ -13,15 +13,8 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [hasMounted, setHasMounted] = useState(false); // NEW
 
-  // Mount hanya di client
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const controlNavbar = () => {
+ const controlNavbar = () => {
     if (window.scrollY > 500) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("-translate-y-[80px]");
@@ -35,21 +28,12 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (!hasMounted) return;
     window.addEventListener("scroll", controlNavbar);
     return () => {
       window.removeEventListener("scroll", controlNavbar);
     };
-  }, [lastScrollY, hasMounted, controlNavbar]);
+  }, [lastScrollY]);
 
-  if (!hasMounted) {
-    // Sementara SSR ditampilkan class default
-    return (
-      <header className="w-full h-[50px] md:h-[70px] bg-white flex items-center justify-between z-20 shadow-sm sticky top-0 transition-transform duration-300 translate-y-0">
-        {/* Optional: logo static bisa ditaruh di sini juga */}
-      </header>
-    );
-  }
 
   return (
     <header
@@ -57,7 +41,7 @@ const Header = () => {
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         <div className="flex-1">
-          <Link href="/">
+          <Link href="/" scroll={false}>
             <Image
               src="/mylogo.png"
               alt="logo"

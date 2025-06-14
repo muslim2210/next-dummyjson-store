@@ -8,11 +8,11 @@ const MenuMobile = ({
   
 
   return (
-    <ul className="flex flex-col lg:hidden font-bold absolute top-[50px] md:top-[80px] left-0 w-full bg-white border-t border-b shadow-md text-black">
+    <ul className="flex flex-col lg:hidden font-bold absolute top-[50px] md:top-[60px] left-0 w-full bg-white border-t border-b shadow-md text-black">
       {
         Menu.map((item, index) => (
           <li key={index} className="py-4 px-5">
-            <Link href={item.href} onClick={() => setMobileMenu(false)}>
+            <Link href={item.href} onClick={() => setMobileMenu(false)} scroll={false}>
               {item.name}
             </Link>
           </li>

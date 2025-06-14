@@ -18,7 +18,6 @@ interface ProductPageProps {
 const ProductDetails = ({ params }: ProductPageProps) => {
   const { productId } = use(params);
   const { data, loading, error } = useFetchProductDetail(productId);
- 
 
   if (error) return <p>{error.message}</p>;
   if (loading) {
@@ -27,7 +26,6 @@ const ProductDetails = ({ params }: ProductPageProps) => {
     )
   } else {
     return (
-  
       <div className="w-full md:py-20">
         <Wrapper>
           <div className="flex flex-col lg:flex-row md:px-10 gap-2 lg:gap-[100px]">

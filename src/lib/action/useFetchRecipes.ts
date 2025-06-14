@@ -1,21 +1,21 @@
 "use client";
-import { ProductModel } from "@/types/product";
+import { RecipeModel } from "@/types/recipes";
 import { useEffect, useState } from "react";
 
-export const useFetchProducts = () => {
-  const [data, setData] = useState<ProductModel[]>([]);
+export const useFetchRecipes = () => {
+  const [data, setData] = useState<RecipeModel[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchRecipes = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
-        if (!res.ok) throw new Error("Failed to fetch data produk");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes`);
+        if (!res.ok) throw new Error("Failed to fetch data Recipes");
         const data = await res.json();
-        console.info("[APP] FETCH PRODUCTS", data);
-        setData(data.products || []);
+        console.info("[APP] FETCH RECIPES", data);
+        setData(data.recipes || []);
       } catch (err) {
         setError(err as Error);
         console.error(err);
@@ -24,14 +24,15 @@ export const useFetchProducts = () => {
       }
     };
 
-    fetchProducts();
+    fetchRecipes();
   }, []);
 
   return { data, loading, error };
 }
 
-export const useFetchProductDetail = (id: number) => {
-  const [data, setData] = useState<ProductModel | null>(null);
+
+export const useFetchRecipeDetail = (id: number) => {
+  const [data, setData] = useState<RecipeModel | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -39,7 +40,7 @@ export const useFetchProductDetail = (id: number) => {
     const fetchProductDetail = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${id}`);
         if (!res.ok) throw new Error("Gagal mengambil data produk");
         const data = await res.json();
         console.info("[APP] FETCH PRODUCT DETAIL", data);
