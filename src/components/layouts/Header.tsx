@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "./Wrapper";
 import Link from "next/link";
-import { BiHeart, BiMenuAltRight } from "react-icons/bi";
-import { VscChromeClose } from "react-icons/vsc";
+import { BiHeart } from "react-icons/bi";
+// import { VscChromeClose } from "react-icons/vsc";
 import Image from "next/image";
 import MenuLink from "./Menu";
 import MenuMobile from "./MenuMobile";
 import { LuCircleUserRound } from "react-icons/lu";
+import { DrawerMenuMobile } from "./DrawerMenuMobile";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -65,7 +66,7 @@ const Header = () => {
                 3
               </div>
             </div>
-            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+            <div className="w-8 md:w-12 h-8 md:h-12 mr-2 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
               <LuCircleUserRound size={38} />
             </div>
           </div>
@@ -73,17 +74,7 @@ const Header = () => {
           <div className="flex items-center gap-4 text-black relative">
             {/* Mobile icon */}
             <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex lg:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
-              {mobileMenu ? (
-                <VscChromeClose
-                  className="text-[16px]"
-                  onClick={() => setMobileMenu(false)}
-                />
-              ) : (
-                <BiMenuAltRight
-                  className="text-[20px]"
-                  onClick={() => setMobileMenu(true)}
-                />
-              )}
+              <DrawerMenuMobile/>       
             </div>
           </div>
         </div>
