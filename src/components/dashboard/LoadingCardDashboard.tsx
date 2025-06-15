@@ -1,9 +1,10 @@
 import React from 'react'
+import { Skeleton } from '../ui/skeleton'
 
 const LoadingCardDashboard = () => {
   return (
-    <div className='w-full h-40 bg-gray-200 animate-pulse rounded-lg'>
-    </div>
+    <Skeleton className='w-full h-40 rounded-xl'>
+    </Skeleton>
   )
 }
 
