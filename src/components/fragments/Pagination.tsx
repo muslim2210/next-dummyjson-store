@@ -1,4 +1,3 @@
-// components/ui/Pagination.tsx
 "use client";
 import React from "react";
 
@@ -11,26 +10,60 @@ interface PaginationProps {
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   const renderPageNumbers = () => {
     const pages = [];
+    const pageSet = new Set<number>();
 
-    for (let i = 1; i <= totalPages; i++) {
+    // Always show first 1-3 pages
+    for (let i = 1; i <= Math.min(3, totalPages); i++) {
+      pageSet.add(i);
+    }
+
+    // Pages around current
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      if (i > 1 && i < totalPages) {
+        pageSet.add(i);
+      }
+    }
+
+    // Always show last 3 pages
+    for (let i = totalPages - 2; i <= totalPages; i++) {
+      if (i > 0) {
+        pageSet.add(i);
+      }
+    }
+
+    const sortedPages = Array.from(pageSet).sort((a, b) => a - b);
+
+    let lastPage = 0;
+    for (const page of sortedPages) {
+      if (lastPage + 1 < page) {
+        // Add ellipsis
+        pages.push(
+          <span key={`ellipsis-${lastPage}`} className="px-2">
+            ...
+          </span>
+        );
+      }
+
       pages.push(
         <button
-          key={i}
-          onClick={() => onPageChange(i)}
+          key={page}
+          onClick={() => onPageChange(page)}
           className={`px-3 py-1 border border-gray-500 rounded-md cursor-pointer ${
-            i === currentPage ? "bg-[#1E3A8A] text-white" : "bg-white text-black"
+            page === currentPage ? "bg-[#1E3A8A] text-white" : "bg-white text-black"
           }`}
         >
-          {i}
+          {page}
         </button>
       );
+
+      lastPage = page;
     }
 
     return pages;
   };
 
   return (
-    <div className="flex gap-2 justify-center text-gray-600 mt-10">
+    <div className="flex gap-2 justify-center text-gray-600 mt-10 flex-wrap">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
