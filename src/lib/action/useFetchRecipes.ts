@@ -2,20 +2,28 @@
 import { RecipeModel } from "@/types/recipes";
 import { useEffect, useState } from "react";
 
-export const useFetchRecipes = () => {
-  const [data, setData] = useState<RecipeModel[]>([]);
+type RecipeResponse = {
+  recipes: RecipeModel[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+export const useFetchRecipes = (page = 1, limit = 8) => {
+  const [data, setData] = useState<RecipeResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchCarts = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes`);
-        if (!res.ok) throw new Error("Failed to fetch data Recipes");
-        const data = await res.json();
-        console.info("[APP] FETCH RECIPES", data);
-        setData(data.recipes || []);
+        const skip = (page - 1) * limit;
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes?limit=${limit}&skip=${skip}`);
+        if (!res.ok) throw new Error("Failed to fetch data recipes");
+        const json = await res.json();
+        console.info("[APP] FETCH RECIPES", json);
+        setData(json);
       } catch (err) {
         setError(err as Error);
         console.error(err);
@@ -24,8 +32,8 @@ export const useFetchRecipes = () => {
       }
     };
 
-    fetchRecipes();
-  }, []);
+    fetchCarts();
+  }, [page, limit]);
 
   return { data, loading, error };
 }

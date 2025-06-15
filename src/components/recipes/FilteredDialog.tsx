@@ -33,8 +33,8 @@ export function FilteredDialog({
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="flex md:hidden cursor-pointer">
-            <IoFilter />
+          <Button variant="outline" className="flex md:hidden cursor-pointer">
+            Filter <IoFilter />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
