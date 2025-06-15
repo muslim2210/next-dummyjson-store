@@ -1,3 +1,4 @@
+"use client";
 import { CartModel } from "@/types/carts";
 import { useEffect, useState } from "react";
 
@@ -8,7 +9,7 @@ type CartResponse = {
   limit: number;
 }
 
-export const useFetchCarts = (page = 1, limit = 8) => {
+export const useFetchCarts = (page = 1, limit = 8, fetchAll = false) => {
   const [data, setData] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -18,7 +19,11 @@ export const useFetchCarts = (page = 1, limit = 8) => {
       try {
         setLoading(true);
         const skip = (page - 1) * limit;
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts?limit=${limit}&skip=${skip}`);
+        const query = fetchAll
+          ? `${process.env.NEXT_PUBLIC_API_URL}/carts?limit=194`
+          : `${process.env.NEXT_PUBLIC_API_URL}/carts?limit=${limit}&skip=${skip}`;
+
+        const res = await fetch(query);
         if (!res.ok) throw new Error("Failed to fetch data carts");
         const json = await res.json();
         console.info("[APP] FETCH CARTS", json);
@@ -32,7 +37,7 @@ export const useFetchCarts = (page = 1, limit = 8) => {
     };
 
     fetchCarts();
-  }, [page, limit]);
+  }, [page, limit, fetchAll]);
 
   return { data, loading, error };
 }

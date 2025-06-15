@@ -9,7 +9,7 @@ type RecipeResponse = {
   limit: number;
 }
 
-export const useFetchRecipes = (page = 1, limit = 8) => {
+export const useFetchRecipes = (page = 1, limit = 8, fetchAll = false) => {
   const [data, setData] = useState<RecipeResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -19,7 +19,11 @@ export const useFetchRecipes = (page = 1, limit = 8) => {
       try {
         setLoading(true);
         const skip = (page - 1) * limit;
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes?limit=${limit}&skip=${skip}`);
+        const query = fetchAll
+          ? `${process.env.NEXT_PUBLIC_API_URL}/recipes?limit=194`
+          : `${process.env.NEXT_PUBLIC_API_URL}/recipes?limit=${limit}&skip=${skip}`;
+
+        const res = await fetch(query);
         if (!res.ok) throw new Error("Failed to fetch data recipes");
         const json = await res.json();
         console.info("[APP] FETCH RECIPES", json);
@@ -33,7 +37,7 @@ export const useFetchRecipes = (page = 1, limit = 8) => {
     };
 
     fetchCarts();
-  }, [page, limit]);
+  }, [page, limit, fetchAll]);
 
   return { data, loading, error };
 }
