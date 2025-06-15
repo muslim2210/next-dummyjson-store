@@ -68,7 +68,7 @@ const ProductPage = () => {
       ) : (
         <div className="text-gray-800 flex flex-col gap-2 mb-5">
           <h5 className="font-medium text-gray-500 text-base">Products / Page ({currentPage}) of {totalPages}</h5>
-          <h2 className="font-semibold text-gray-700 text-xl md:text-3xl">All Products {data && data.total}</h2>
+          <h2 className="font-semibold text-gray-700 text-xl md:text-3xl">All Products ({data && data.total})</h2>
         </div>
       )}
         

@@ -12,8 +12,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
     const pages = [];
     const pageSet = new Set<number>();
 
-    // Always show first 1-3 pages
-    for (let i = 1; i <= Math.min(3, totalPages); i++) {
+    // Always show first 1-2 pages
+    for (let i = 1; i <= Math.min(2, totalPages); i++) {
       pageSet.add(i);
     }
 
@@ -25,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
     }
 
     // Always show last 3 pages
-    for (let i = totalPages - 2; i <= totalPages; i++) {
+    for (let i = totalPages - 1; i <= totalPages; i++) {
       if (i > 0) {
         pageSet.add(i);
       }
@@ -48,7 +48,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border border-gray-500 rounded-md cursor-pointer ${
+          className={`px-2 py-[2px] text-xs border border-gray-500 rounded-md cursor-pointer ${
             page === currentPage ? "bg-[#1E3A8A] text-white" : "bg-white text-black"
           }`}
         >
@@ -63,11 +63,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
   };
 
   return (
-    <div className="flex gap-2 justify-center text-gray-600 mt-10 flex-wrap">
+    <div className="flex gap-2 justify-center text-gray-600 mt-7 flex-wrap">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 text-sm rounded border border-gray-500 disabled:opacity-50 cursor-pointer"
+        className="px-2 py-[2px] text-xs rounded border border-gray-500 disabled:opacity-50 cursor-pointer"
       >
         Prev
       </button>
@@ -75,7 +75,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 text-sm rounded border border-gray-500 disabled:opacity-50 cursor-pointer"
+        className="px-2 py-[2px] text-xs rounded border border-gray-500 disabled:opacity-50 cursor-pointer"
       >
         Next
       </button>

@@ -25,9 +25,9 @@ export const useFetchProducts = (page = 1, limit = 10, fetchAll = false) => {
 
         const res = await fetch(query);
         if (!res.ok) throw new Error("Failed to fetch products");
-        const products = await res.json();
-        console.info("[APP] FETCH PRODUCTS", products);
-        setData(products);
+        const json = await res.json();
+        console.info("[APP] FETCH PRODUCTS", json);
+        setData(json);
       } catch (err) {
         setError(err as Error);
         console.error(err);
