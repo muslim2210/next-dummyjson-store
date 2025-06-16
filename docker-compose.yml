@@ -7,6 +7,4 @@ services:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_URL=https://dummyjson.com
-    volumes:
-      - .:/app
     restart: unless-stopped

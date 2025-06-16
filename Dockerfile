@@ -1,23 +1,28 @@
-# Base image with Node.js
-FROM node:18
-
-# Set working directory
+# Stage 1: Builder
+FROM node:18 AS builder
 WORKDIR /app
 
-# Copy package files
+# Copy package.json dan install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy all source files
+# Salin seluruh project
 COPY . .
 
-# Build the project
+# Jalankan build
 RUN npm run build
 
-# Expose the default Next.js port
-EXPOSE 3000
+# Stage 2: Production runner
+FROM node:18 AS runner
+WORKDIR /app
 
-# Start the app
+# Salin hanya hasil build
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/next.config.ts ./
+COPY --from=builder /app/tsconfig.json ./
+
+EXPOSE 3000
 CMD ["npm", "start"]
