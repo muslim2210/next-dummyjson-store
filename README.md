@@ -10,6 +10,9 @@ Features include:
 - 🧱 Responsive layout with mobile optimization
 - 🐳 Docker-ready deployment setup
 
+## 📸 Preview
+![alt text](https://github.com/muslim2210/next-dummyjson-store/blob/master/public/screenshot/dashboard.png?raw=true)
+
 ---
 
 ## 🔧 Tech Stack
@@ -74,9 +77,7 @@ NEXT_PUBLIC_API_URL=https://dummyjson.com
  Docker Compose support
  Responsive layout for mobile/tablet
 
- ## 📸 Screenshot
 
-![Dashboard Preview](./public/screenshots/dashboard.png)
 
 👨‍💻 Author
 Bukhori Muslim
