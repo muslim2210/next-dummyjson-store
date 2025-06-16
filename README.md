@@ -11,7 +11,7 @@ Features include:
 - 🐳 Docker-ready deployment setup
 
 ## 📸 Preview
-![alt text](https://github.com/muslim2210/next-dummyjson-store/blob/master/public/screenshot/dashboard.png?raw=true)
+![alt text](https://github.com/muslim2210/next-dummyjson-store/blob/master/public/dashboard.png?raw=true)
 
 ---
 
@@ -48,13 +48,10 @@ npm run dev
 Open http://localhost:3000
 
 
-Ensure Docker is installed, then run:
+## 🐳 Run with Docker Compose
 
-bash
-Copy
-Edit
+```bash
 docker compose up --build
-Then open your browser at http://localhost:3000
 
 Note: API calls use NEXT_PUBLIC_API_URL=https://dummyjson.com
 
