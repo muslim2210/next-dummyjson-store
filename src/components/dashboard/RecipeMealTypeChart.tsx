@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { RecipeModel } from "@/types/recipes";
 import React from "react";
@@ -41,6 +40,7 @@ const RecipeMealTypeChart = ({ recipes }: Props) => {
     },
     dataLabels: {
       enabled: true,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       formatter: function (val: number, opts: any) {
         const label = opts.w.globals.labels[opts.seriesIndex];
         return `${label} (${val.toFixed(1)}%)`;
@@ -55,6 +55,7 @@ const RecipeMealTypeChart = ({ recipes }: Props) => {
     breakpoint: 768,
     options: {
       legend: {
+          show: true,
           position: "bottom" as const,
         },
       },

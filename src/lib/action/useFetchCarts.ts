@@ -9,7 +9,13 @@ type CartResponse = {
   limit: number;
 }
 
-export const useFetchCarts = (page = 1, limit = 8, fetchAll = false) => {
+type Props = {
+  page?: number;
+  limit?: number;
+  fetchAll?: boolean;
+}
+
+export const useFetchCarts = ({ page = 1, limit = 8, fetchAll = false }: Props) => {
   const [data, setData] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);

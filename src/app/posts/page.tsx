@@ -11,8 +11,7 @@ const PostPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const { data, loading } = useFetchPosts(
-    currentPage,
-    itemsPerPage,
+    { page: currentPage, limit: itemsPerPage }
   );
   const totalPages = data ? Math.ceil(data.total / itemsPerPage) : 0;
   

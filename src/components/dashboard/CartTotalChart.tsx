@@ -1,32 +1,27 @@
 "use client";
 import { CartModel } from "@/types/carts";
 import React from "react";
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
 
-type Props = {
+// ⛔ Hindari SSR untuk react-apexcharts
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+interface Props {
   carts: CartModel[];
-};
+}
 
 const CartTotalChart = ({ carts }: Props) => {
-  // 1. Sort descending by total
   const topCarts = [...carts]
     .sort((a, b) => b.total - a.total)
-    .slice(0, 10); // 2. Ambil top 10
+    .slice(0, 10);
 
-  // 3. Siapkan data chart
   const categories = topCarts.map((cart) => `Cart ${cart.id}`);
   const totals = topCarts.map((cart) => cart.total);
   const discounted = topCarts.map((cart) => cart.discountedTotal);
 
   const series = [
-    {
-      name: "Total",
-      data: totals,
-    },
-    {
-      name: "Discounted Total",
-      data: discounted,
-    },
+    { name: "Total", data: totals },
+    { name: "Discounted Total", data: discounted },
   ];
 
   const options = {

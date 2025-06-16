@@ -13,8 +13,7 @@ const RecipesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const { data, loading } = useFetchRecipes(
-    currentPage,
-    itemsPerPage,
+    { page: currentPage, limit: itemsPerPage }
   );
   const totalPages = data ? Math.ceil(data.total / itemsPerPage) : 0;
   const [selectedTags, setSelectedTags] = useState<string[]>([]);

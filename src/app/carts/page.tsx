@@ -11,8 +11,7 @@ const CartsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const { data, loading } = useFetchCarts(
-    currentPage,
-    itemsPerPage,
+    { page: currentPage, limit: itemsPerPage }
   );
   const totalPages = data ? Math.ceil(data.total / itemsPerPage) : 0;
 

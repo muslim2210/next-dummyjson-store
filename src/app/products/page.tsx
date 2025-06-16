@@ -16,9 +16,7 @@ const ProductPage = () => {
 
   const isSearching = search.trim() !== "";
   const { data, loading } = useFetchProducts(
-    currentPage,
-    itemsPerPage,
-    isSearching // fetchAll = true kalau sedang search
+    { page: currentPage, limit: itemsPerPage, fetchAll: isSearching }
   );
 
   // Filter & sort saat searching aktif
